@@ -12,11 +12,13 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class ToDoRestClient {
+
     private RestTemplate restTemplate;
     private ToDoRestClientProperties properties;
 
@@ -35,7 +37,7 @@ public class ToDoRestClient {
         if (response.getStatusCode() == HttpStatus.OK) {
             return response.getBody();
         }
-        return null;
+        return new ArrayList<>();
     }
     public ToDo findById(String id){
         Map<String, String> params = new HashMap<String, String>();
@@ -50,7 +52,7 @@ public class ToDoRestClient {
         if (response.getStatusCode() == HttpStatus.CREATED){
             return restTemplate.getForObject(response.getHeaders().getLocation(), ToDo.class);
         }
-        return null;
+        return new ToDo();
     }
 
     public ToDo setCompleted(String id) throws URISyntaxException{

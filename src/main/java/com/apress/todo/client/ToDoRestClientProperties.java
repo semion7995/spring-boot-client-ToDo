@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "todo")
 @Data
 public class ToDoRestClientProperties {
+    public ToDoRestClientProperties() {
+    }
+
     private String url;
     private String basePath;
 

@@ -2,11 +2,12 @@ package com.apress.todo.client.domain;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
-public class ToDo {
+public class ToDo implements Serializable {
     private String id;
     private String description;
     private LocalDateTime created;

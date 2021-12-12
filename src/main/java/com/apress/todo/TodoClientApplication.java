@@ -25,24 +25,26 @@ public class TodoClientApplication {
 	@Bean
 	public CommandLineRunner process(ToDoRestClient client){
 		return args -> {
-			Iterable<ToDo> toDos = client.findAll();
-			assert toDos !=null;
-			toDos.forEach(toDo -> log.info(toDos.toString()));
+
 
 			ToDo newToDo = client.upsert(new ToDo("Drink plenty of Water daily!"));
 			assert newToDo != null;
 			log.info(newToDo.toString());
 
-			ToDo toDo = client.findById(newToDo.getId());
-			assert toDo !=null;
-			log.info(toDo.toString());
+//			Iterable<ToDo> toDos = client.findAll();
+//			assert toDos !=null;
+//			toDos.forEach(toDo -> log.info(toDos.toString()));
+//
+//			ToDo toDo = client.findById(newToDo.getId());
+//			assert toDo !=null;
+//			log.info(toDo.toString());
+//
+//			ToDo completed = client.setCompleted(newToDo.getId());
+//			assert completed.isCompleted();
+//			log.info(completed.toString());
 
-			ToDo completed = client.setCompleted(newToDo.getId());
-			assert completed.isCompleted();
-			log.info(completed.toString());
-
-			client.delete(newToDo.getId());
-			assert client.findById(newToDo.getId()) == null;
+//			client.delete(newToDo.getId());
+//			assert client.findById(newToDo.getId()) == null;
 		};
 	}
 
